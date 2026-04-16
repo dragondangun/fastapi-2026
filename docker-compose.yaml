@@ -4,7 +4,7 @@ services:
     ports:
       - 8000:8000
     environment:
-      - DATABASE_HOSTNAME=localhost
+      - DATABASE_HOSTNAME=postgres
       - DATABASE_PORT=5432
       - DATABASE_PASSWORD=1943
       - DATABASE_NAME=fastapi
