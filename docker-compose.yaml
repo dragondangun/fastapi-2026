@@ -5,6 +5,8 @@ services:
       - postgres
     ports:
       - 8000:8000
+    volumes:
+      - ./:/usr/src/app:ro
     environment:
       - DATABASE_HOSTNAME=postgres
       - DATABASE_PORT=5432
