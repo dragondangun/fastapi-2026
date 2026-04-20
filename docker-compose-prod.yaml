@@ -1,6 +1,6 @@
 services:
   api:
-    build: .
+    image: dragondangun/fastapi
     depends_on:
       - postgres
     ports:
