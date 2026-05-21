@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Annotated, Optional
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import AliasChoices, BaseModel, ConfigDict, EmailStr, Field
 
 
 class UserCreate(BaseModel):
@@ -42,7 +42,7 @@ class Post(PostBase):
 
 class PostOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    post: Post = Field(validation_alias="Post")
+    post: Post = Field(validation_alias=AliasChoices("Post", "post"))
     votes: int
 
 
