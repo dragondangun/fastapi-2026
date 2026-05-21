@@ -14,6 +14,7 @@
         "pwdlib",
         "sessionmaker",
         "SQLALCHEY",
-        "sqltypes"
+        "sqltypes",
+        "usefixtures"
     ]
 }
