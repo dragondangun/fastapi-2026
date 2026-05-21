@@ -1,4 +1,10 @@
 {
+    "isort.importStrategy": "fromEnvironment",
+    "isort.interpreter": [
+        "d:\\Dan\\python\\fastapi\\venv\\Scripts\\python.exe"
+    ],
+    "isort.args": ["--profile", "black"],
+
     "cSpell.words": [
         "autoflush",
         "conint",
