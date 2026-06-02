@@ -41,7 +41,6 @@ class Post(PostBase):
 
 
 class PostOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
     post: Post = Field(validation_alias=AliasChoices("Post", "post"))
     votes: int
 

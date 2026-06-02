@@ -35,7 +35,7 @@ def get_posts(db: Session = Depends(get_db),
         ).offset(skip).all()
     print(results)
     # return None
-    return results
+    return [{"post": post, "votes": votes} for post, votes in results]
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED,
