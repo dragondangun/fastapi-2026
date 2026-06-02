@@ -73,7 +73,7 @@ jobs:
       - name: pulling git repo
         uses: actions/checkout@v2
       - name: deploy to ubuntu server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.1
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ vars.PROD_USERNAME }}
