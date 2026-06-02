@@ -28,5 +28,5 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     """Downgrade schema."""
-    op.drop_constraint('post_users_fk', table_name='posts')
+    op.drop_constraint('posts_users_fk', table_name='posts')
     op.drop_column('posts', 'owner_id')
