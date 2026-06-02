@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .routers import auth, post, user, vote
 
-origins = ["*"]
+origins = ["*"]  # won't be used in real prod
 
 app = FastAPI()
 app.add_middleware(
