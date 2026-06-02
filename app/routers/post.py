@@ -33,8 +33,7 @@ def get_posts(db: Session = Depends(get_db),
         ).filter(models.Post.title.contains(search)).limit(
             limit
         ).offset(skip).all()
-    print(results)
-    # return None
+
     return [{"post": post, "votes": votes} for post, votes in results]
 
 
