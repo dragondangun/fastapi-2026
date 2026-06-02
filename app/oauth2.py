@@ -2,7 +2,6 @@ from datetime import datetime, timedelta, UTC
 
 import jwt
 from jwt.exceptions import InvalidTokenError
-from pygments.unistring import No
 
 from app import database, schemas, models
 from fastapi import Depends, HTTPException, status
