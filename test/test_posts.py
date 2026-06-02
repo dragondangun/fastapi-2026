@@ -12,8 +12,8 @@ def test_get_all_posts(authorized_client, test_posts):
 
     posts_list = list(map(validate, res.json()))
     print(posts_list)
-    assert len(res.json()) == len(test_posts)
     assert res.status_code == status.HTTP_200_OK
+    assert len(res.json()) == len(test_posts)
 
 
 def test_unauthorized_user_get_all_posts(client):
@@ -54,8 +54,9 @@ def test_create_post(authorized_client, test_user, title, content, published):
         }
     )
 
-    created_post = schemas.Post(**res.json())
     assert res.status_code == status.HTTP_201_CREATED
+
+    created_post = schemas.Post(**res.json())
     assert created_post.title == title
     assert created_post.content == content
     assert created_post.published == published
@@ -73,8 +74,9 @@ def test_create_post_default_publish_true(authorized_client, test_user, title,
         }
     )
 
-    created_post = schemas.Post(**res.json())
     assert res.status_code == status.HTTP_201_CREATED
+
+    created_post = schemas.Post(**res.json())
     assert created_post.title == title
     assert created_post.content == content
     assert created_post.published is True
@@ -115,8 +117,9 @@ def test_update_post(authorized_client, test_posts):
     }
     res = authorized_client.put(f"/posts/{test_posts[0].id}", json=data)
 
-    updated_post = schemas.Post(**res.json())
     assert res.status_code == status.HTTP_200_OK
+
+    updated_post = schemas.Post(**res.json())
     assert updated_post.title == data['title']
     assert updated_post.content == data['content']
     assert updated_post.id == data['id']

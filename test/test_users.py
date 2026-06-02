@@ -8,16 +8,19 @@ from fastapi import status
 
 def test_root(client):
     res = client.get("/")
-    assert res.json().get("message") == "Hello World!!!"
     assert res.status_code == status.HTTP_200_OK
+
+    assert res.json().get("message") == "Hello World!!!"
 
 
 def test_create_user(client):
     res = client.post("/users/", json={"email": "hello123@gmail.com",
                                        "password": "password123"})
+
+    assert res.status_code == status.HTTP_201_CREATED
+
     new_user = schemas.UserOut(**res.json())
     assert new_user.email == "hello123@gmail.com"
-    assert res.status_code == status.HTTP_201_CREATED
 
 
 def test_login(test_user, client):
@@ -25,6 +28,9 @@ def test_login(test_user, client):
         "/login", data={"username": test_user['email'],
                         "password": test_user['password']}
     )
+
+    assert res.status_code == status.HTTP_200_OK
+
     login_res = schemas.Token(**res.json())
     payload = jwt.decode(login_res.access_token, settings.secret_key,
                          algorithms=[settings.algorithm])
@@ -32,7 +38,6 @@ def test_login(test_user, client):
 
     assert id == test_user["id"]
     assert login_res.token_type == "bearer"
-    assert res.status_code == status.HTTP_200_OK
 
 
 @pytest.mark.parametrize("email, password, status_code", [
