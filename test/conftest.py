@@ -40,7 +40,11 @@ def client(session):
         yield session
 
     app.dependency_overrides[get_db] = override_get_db
-    yield TestClient(app)
+    try:
+        with TestClient(app) as c:
+            yield c
+    finally:
+        app.dependency_overrides.pop(get_db, None)
 
 
 @pytest.fixture
