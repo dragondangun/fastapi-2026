@@ -132,4 +132,7 @@ def test_posts(test_user, test_user2, session):
     session.add_all(posts)
     session.commit()
 
-    return session.query(Post).all()
+    for post in posts:
+        session.refresh(post)
+
+    return posts
