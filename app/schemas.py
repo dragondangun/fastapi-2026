@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Literal, Optional
 
-from pydantic import AliasChoices, BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 
 class UserCreate(BaseModel):
@@ -41,7 +41,7 @@ class Post(PostBase):
 
 
 class PostOut(BaseModel):
-    post: Post = Field(validation_alias=AliasChoices("Post", "post"))
+    post: Post
     votes: int
 
 
